@@ -183,7 +183,7 @@ class DRLGazebo(Node):
                 index = random.randrange(0, len(goal_pose_list))
                 self.goal_x = float(goal_pose_list[index][0])
                 self.goal_y = float(goal_pose_list[index][1])
-            elif self.stage == 8 or self.stage == 9 or self.stage == 12:
+            elif self.stage == 9 or self.stage == 12:
                 # --- Define static goal positions here ---
                 goal_pose_list = [[2.0, 2.0], [2.0, 1.5], [2.0, -0.5], [2.0, -1.0], [2.0, -2.0], [1.3, 1.0],
                                     [1.0, 0.3], [1.0, -2.0], [0.3, -1.0],  [0.0, 2.0], [0.0, -1.0], [-1.0, 1.0],
@@ -191,6 +191,34 @@ class DRLGazebo(Node):
                 index = random.randrange(0, len(goal_pose_list))
                 self.goal_x = float(goal_pose_list[index][0])
                 self.goal_y = float(goal_pose_list[index][1])
+            elif self.stage == 8:
+                goal_pose_list = [     
+            
+                [2.1, 1.0],[2.6, 1.0],[2.1, 1.5],[2.6, 1.5],[2.1, 2.0],[2.6, 2.0],[2.1, 2.5],[2.6, 2.5],
+                [2.1, -1.0],[2.6, -1.0],[2.1, -1.5],[2.6, -1.5],[2.1, -2.0],[2.6, -2.0],[2.1, -2.5],[2.6, -2.5],
+                [2.1, 0.5],[2.6, 0.5],[2.1, 0.0],[2.6, 0.0],[2.1, -0.5],[2.6, -0.5],
+                [1.5, 0.5],[1.5, -0.5],
+
+                [0.5, 1.0],[1.0, 1.0],[0.5, 1.5],[1.0, 1.5],[0.5, 2.0],[1.0, 2.0],[0.5, 2.5],[1.0, 2.5],
+                [0.5, -1.0],[1.0, -1.0],[0.5, -1.5],[1.0, -1.5],[0.5, -2.0],[1.0, -2.0],[0.5, -2.5],[1.0, -2.5],
+                [0.5, 0.5],[1.0, 0.5],[0.5, 0.0],[1.0, 0.0],[0.5, -0.5],[1.0, -0.5],
+                [0.0, 0,5],[0.0,-0,5],
+
+                [-0.6, 1.0],[-1.1, 1.0],[-0.6, 1.5],[-1.1, 1.5],[-0.6, 2.0],[-1.1, 2.0],[-0.6, 2.5],[-1.1, 2.5],
+                [-0.6, -1.0],[-1.1, -1.0],[-0.6, -1.5],[-1.1, -1.5],[-0.6, -2.0],[-1.1, -2.0],[-0.6, -2.5],[-1.1, -2.5],
+                [-0.6, 0.5],[-1.1, 0.5],[-0.6, 0.0],[-1.1, 0.0],[-0.6, -0.5],[-1.1, -0.5],
+                [-1.66, 0,5],[-1.66,-0,5],
+
+                [-2.6, 1.0],[-2.15, 1.0],[-2.6, 1.5],[-2.15, 1.5],[-2.6, 2.0],[-2.15, 2.0],[-2.6, 2.5],[-2.15, 2.5],
+                [-2.6, -1.0],[-2.15, -1.0],[-2.6, -1.5],[-2.15, -1.5],[-2.6, -2.0],[-2.15, -2.0],[-2.6, -2.5],[-2.15, -2.5],
+                [-2.6, 0.5],[-2.15, 0.5],[-2.6, 0.0],[-2.15, 0.0],[-2.6, -0.5],[-2.15, -0.5],
+                
+
+                ]
+                index = random.randrange(0, len(goal_pose_list))
+                self.goal_x = float(goal_pose_list[index][0])
+                self.goal_y = float(goal_pose_list[index][1])
+
             elif self.stage not in [4, 5, 7]:
                 self.goal_x = random.randrange(-15, 16) / 10.0
                 self.goal_y = random.randrange(-15, 16) / 10.0
@@ -213,6 +241,7 @@ class DRLGazebo(Node):
         while not self.reset_simulation_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('reset service not available, waiting again...')
         self.reset_simulation_client.call_async(req)
+        time.sleep(0.4)
 
     def delete_entity(self):
         req = DeleteEntity.Request()
@@ -220,6 +249,7 @@ class DRLGazebo(Node):
         while not self.delete_entity_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
         self.delete_entity_client.call_async(req)
+        time.sleep(0.4)
 
     def spawn_entity(self):
         goal_pose = Pose()
@@ -232,6 +262,7 @@ class DRLGazebo(Node):
         while not self.spawn_entity_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
         self.spawn_entity_client.call_async(req)
+        time.sleep(0.4)
 
     def get_obstacle_coordinates(self):
         tree = ET.parse(os.getenv('DRLNAV_BASE_PATH') + '/src/turtlebot3_simulations/turtlebot3_gazebo/models/turtlebot3_drl_world/inner_walls/model.sdf')

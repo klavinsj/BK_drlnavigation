@@ -23,9 +23,9 @@
     </gui>
 
     <physics type="ode">
-      <real_time_update_rate>1000.0</real_time_update_rate>
+      <real_time_update_rate>0</real_time_update_rate>
       <max_step_size>0.001</max_step_size>
-      <real_time_factor>1</real_time_factor>
+      <real_time_factor>10000</real_time_factor>
       <ode>
         <solver>
           <type>quick</type>
@@ -50,13 +50,13 @@
 
     <include>
       <pose>0 0 0 0 0 0</pose>
-      <uri>model://turtlebot3_drl_world/inner_walls_large</uri>
+      <uri>model://turtlebot3_drl_world/inner_walls_noliktava</uri>
     </include>
 
     <model name="turtlebot3_drl_obstacle1">
       <plugin name="obstacle1" filename="libobstacle7.so"/>
       <include>
-        <pose>2 2 0 0 0 0</pose>
+        <pose>2.5 2 0 0 0 0</pose>
         <uri>model://turtlebot3_drl_world/obstacle1</uri>
       </include>
     </model>
@@ -64,7 +64,7 @@
     <model name="turtlebot3_drl_obstacle2">
       <plugin name="obstacle2" filename="libobstacle8.so"/>
       <include>
-        <pose>-2 -2 0 0 0 0</pose>
+        <pose> -2.5 -2 0 0 0 0</pose>
         <uri>model://turtlebot3_drl_world/obstacle2</uri>
       </include>
     </model>
