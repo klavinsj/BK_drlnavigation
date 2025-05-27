@@ -21,5 +21,5 @@ DDPG
 TD3
 ![_figure](https://github.com/user-attachments/assets/e2e8734b-3509-4fcd-8445-5d0f6d7e3652)
 
-SAC nedarbojas
+SAC nedarbojas - netiek izmantots
 ![_figure](https://github.com/user-attachments/assets/f8f1aa9b-3f04-473c-b059-9aca47e82ac9)
